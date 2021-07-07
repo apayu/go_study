@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+if Rails.env.development?
+  currencies = [
+    { code: 'NTD' },
+    { code: 'USD' }
+  ]
+
+  currencies.each do |currency|
+    Currency.find_or_create_by!(code: currency[:code])
+  end
+end
