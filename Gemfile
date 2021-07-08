@@ -34,6 +34,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Authentication
 gem 'devise'
 
+# Utils
+gem 'simple_form'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
