@@ -1,0 +1,4 @@
+<%= simple_form_for @new_currency do |f| %>
+  <%= f.input :code, label: false, placeholder: t('currency.enter_code') %>
+  <%= f.button :submit, t('currency.create') %>
+<% end %>
