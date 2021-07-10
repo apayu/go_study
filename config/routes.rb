@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   root to: "currencies#index"
 
   resources :currencies
+
+  resources :categories
 end

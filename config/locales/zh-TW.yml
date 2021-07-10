@@ -217,3 +217,9 @@ zh-TW:
     new: '新增貨幣'
     edit: '編輯'
     delete: '刪除'
+  category:
+    enter_name: '輸入類別名稱'
+    click_and_create: '點我新增類別'
+    new: '新增類別'
+    edit: '編輯'
+    delete: '刪除'
