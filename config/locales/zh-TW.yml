@@ -214,4 +214,6 @@ zh-TW:
   currency:
     enter_code: '輸入貨幣代碼'
     click_and_create: '點我新增貨幣'
-    create: '新增貨幣'
+    new: '新增貨幣'
+    edit: '編輯'
+    delete: '刪除'
