@@ -1,0 +1,6 @@
+<div>
+  <%= simple_form_for category do |f| %>
+    <%= f.input :name, label: false, placeholder: t('category.enter_name') %>
+    <%= f.button :submit, t("category.#{action}") %>
+  <% end %>
+</div>
