@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  resources :courses
   devise_for :admin_users
 
-  root to: "currencies#index"
+  root to: "courses#index"
 
   resources :currencies
 

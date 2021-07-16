@@ -211,6 +211,13 @@ zh-TW:
       long: "%Y年%m月%d日 %H:%M"
       short: "%m月%d日 %H:%M"
     pm: 下午
+  course:
+    click_and_create: '點我新增課程'
+    enter_title: '輸入課程主題'
+    enter_price: '輸入價格'
+    new: '新增課程'
+    edit: '編輯'
+    delete: '刪除'
   currency:
     enter_code: '輸入貨幣代碼'
     click_and_create: '點我新增貨幣'

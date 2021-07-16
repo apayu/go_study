@@ -1,0 +1,14 @@
+<div>
+  <%= simple_form_for course do |f| %>
+    <%= f.input :title, label: false, placeholder: t('course.enter_title') %>
+    <%= f.input :price, label: false, placeholder: t('course.enter_price') %>
+    <%= f.select :currency_id, Currency.all.map { |c| [ c.code, c.id ] }, label: false %>
+    <%= f.select :category_id, Category.all.map { |c| [ c.name, c.id ] }, label: false %>
+    <%= f.input :status, collection: Course.statuses.keys, label: false, selected: 0 %>
+    <%= f.input :slug, label: false %>
+    <%= f.input :description, label: false %>
+    <%= f.input :valid_period, label: false %>
+
+    <%= f.button :submit, t("course.#{action}") %>
+  <% end %>
+</div>
