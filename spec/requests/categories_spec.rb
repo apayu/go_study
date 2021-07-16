@@ -108,6 +108,10 @@ RSpec.describe 'Category', type: :request do
       before { sign_in admin }
 
       it { is_expected.to redirect_to(root_path) }
+      it do
+        category
+        expect { delete_category }.to change(Category, :count).by(-1)
+      end
     end
   end
 end
