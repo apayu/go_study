@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :course_inventories, dependent: :restrict_with_exception
   has_many :courses, through: :course_inventories, dependent: :restrict_with_exception
+  has_many :transactions, dependent: :restrict_with_exception
 
   has_secure_token :auth_token
 end
