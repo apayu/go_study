@@ -11,6 +11,14 @@ module CourseStore
           courses = Course.all
           present courses
         end
+
+        desc 'Return a specific course'
+        route_param :id do
+          get do
+            course = Course.find(params[:id])
+            present course, with: CourseStore::Entities::Course
+          end
+        end
       end
     end
   end
