@@ -128,6 +128,10 @@ RSpec.describe 'Currencies', type: :request do
       before { sign_in admin }
 
       it { is_expected.to redirect_to(root_path) }
+      it do
+        currency
+        expect { delete_currency }.to change(Currency, :count).by(-1)
+      end
     end
   end
 end
