@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :currencies
 
   resources :categories
+
+  mount CourseStore::Base => '/'
 end
