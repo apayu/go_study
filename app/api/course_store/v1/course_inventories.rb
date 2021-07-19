@@ -18,7 +18,7 @@ module CourseStore
 
         post do
           course = Course.publish.find(params[:course_id])
-          error!({ message: 'Duplicated bought!' }, 401) if CourseInventory.available(@current_user, course).size >= 1
+          error!({ message: 'Duplicated bought!' }, 403) if CourseInventory.available(@current_user, course).size >= 1
 
           ActiveRecord::Base.transaction do
             course_inventory = CourseInventory.new(user: @current_user, course: course, expired_at: Time.zone.now + course.valid_period.days)
@@ -27,10 +27,10 @@ module CourseStore
               if transaction.save
                 { message: 'Create success!', auth_token: @current_user.auth_token, status: 200 }
               else
-                error!({ message: transaction.errors }, 401)
+                error!({ message: transaction.errors }, 403)
               end
             else
-              error!({ message: course_inventory.errors }, 401)
+              error!({ message: course_inventory.errors }, 403)
             end
           end
         rescue ActiveRecord::RecordNotFound
