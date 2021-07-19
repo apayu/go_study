@@ -16,7 +16,7 @@ module CourseStore
         end
 
         post do
-          course = Course.find(params[:course_id])
+          course = Course.publish.find(params[:course_id])
 
           ActiveRecord::Base.transaction do
             course_inventory = CourseInventory.new(user: @current_user, course: course, expired_at: Time.zone.now + course.valid_period)
