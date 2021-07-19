@@ -16,5 +16,4 @@ RSpec.describe Course, type: :model do
   it { is_expected.to belong_to(:category) }
   it { is_expected.to have_many(:course_inventories).dependent(:restrict_with_exception) }
   it { is_expected.to have_many(:users).through(:course_inventories).dependent(:restrict_with_exception) }
-  it { is_expected.to have_many(:transactions).dependent(:restrict_with_exception) }
 end

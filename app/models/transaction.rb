@@ -2,5 +2,5 @@
 
 class Transaction < ApplicationRecord
   belongs_to :user
-  belongs_to :course
+  belongs_to :course_inventory
 end

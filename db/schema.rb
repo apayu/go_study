@@ -68,13 +68,13 @@ ActiveRecord::Schema.define(version: 2021_07_18_190633) do
 
   create_table "transactions", force: :cascade do |t|
     t.string "trade_no"
-    t.bigint "course_id", null: false
+    t.bigint "course_inventory_id", null: false
     t.bigint "user_id", null: false
     t.decimal "amounts", null: false
     t.bigint "currency_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_transactions_on_course_id"
+    t.index ["course_inventory_id"], name: "index_transactions_on_course_inventory_id"
     t.index ["currency_id"], name: "index_transactions_on_currency_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end

@@ -5,4 +5,5 @@ require 'rails_helper'
 RSpec.describe CourseInventory, type: :model do
   it { is_expected.to belong_to(:user) }
   it { is_expected.to belong_to(:course) }
+  it { is_expected.to have_many(:transactions).dependent(:restrict_with_exception) }
 end

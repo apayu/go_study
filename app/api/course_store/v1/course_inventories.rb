@@ -22,7 +22,7 @@ module CourseStore
           ActiveRecord::Base.transaction do
             course_inventory = CourseInventory.new(user: @current_user, course: course, expired_at: Time.zone.now + course.valid_period.days)
             if course_inventory.save
-              transaction = Transaction.new(trade_no: format("REG%d%d", @current_user.id, Time.zone.now.to_i), course: course, user: @current_user, amounts: course.price, currency_id: course.currency_id)
+              transaction = Transaction.new(trade_no: format("REG%d%d", @current_user.id, Time.zone.now.to_i), course_inventory: course_inventory, user: @current_user, amounts: course.price, currency_id: course.currency_id)
               if transaction.save
                 { message: 'Create success!', auth_token: @current_user.auth_token, status: 200 }
               else
