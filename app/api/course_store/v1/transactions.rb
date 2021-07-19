@@ -12,9 +12,13 @@ module CourseStore
 
       resource :transactions do
         desc 'Return list of transactions'
+        params do
+          optional :valid_course, type: Boolean
+          optional :category_id, type: Integer
+        end
         get do
-          # course_inventories = @current_user.course_inventories
-          present @current_user, with: CourseStore::Entities::User
+          transactoins = TransactionContext.new(params, @current_user).perform
+          present transactoins, with: CourseStore::Entities::Transaction
         end
       end
     end
