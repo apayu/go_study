@@ -5,6 +5,7 @@ class Course < ApplicationRecord
   belongs_to :currency
   has_many :course_inventories, dependent: :restrict_with_exception
   has_many :users, through: :course_inventories, dependent: :restrict_with_exception
+  has_many :transactions, dependent: :restrict_with_exception
 
   validates :title, presence: true
   validates :price, presence: true
