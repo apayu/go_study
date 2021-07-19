@@ -17,9 +17,10 @@ module CourseStore
 
         post do
           course = Course.publish.find(params[:course_id])
+          error!({ message: 'Duplicated bought!' }, 401) if CourseInventory.available(@current_user, course).size >= 1
 
           ActiveRecord::Base.transaction do
-            course_inventory = CourseInventory.new(user: @current_user, course: course, expired_at: Time.zone.now + course.valid_period)
+            course_inventory = CourseInventory.new(user: @current_user, course: course, expired_at: Time.zone.now + course.valid_period.days)
             if course_inventory.save
               transaction = Transaction.new(trade_no: format("REG%d%d", @current_user.id, Time.zone.now.to_i), course: course, user: @current_user, amounts: course.price, currency_id: course.currency_id)
               if transaction.save
