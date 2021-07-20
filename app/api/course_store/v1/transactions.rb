@@ -1,10 +1,8 @@
 module CourseStore
   module V1
     class Transactions < Grape::API
-      before do
-        @current_user = User.find_by(auth_token: params['auth_token'])
-        error!({ message: "Invalid token" }, 401) if @current_user.nil?
-      end
+      helpers CourseStore::Helpers::AuthenticationHelper
+      before { authenticate_user! }
 
       version 'v1', using: :path
       format :json
@@ -17,7 +15,7 @@ module CourseStore
           optional :category_id, type: Integer
         end
         get do
-          transactoins = TransactionContext.new(params, @current_user).perform
+          transactoins = TransactionContext.new(params, current_user).perform
           present transactoins, with: CourseStore::Entities::Transaction
         end
       end
