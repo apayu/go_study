@@ -1,13 +1,13 @@
 <div>
   <%= simple_form_for course do |f| %>
-    <%= f.input :title, label: false, placeholder: t('course.enter_title') %>
-    <%= f.input :price, label: false, placeholder: t('course.enter_price') %>
-    <%= f.select :currency_id, Currency.all.map { |c| [ c.code, c.id ] }, label: false %>
-    <%= f.select :category_id, Category.all.map { |c| [ c.name, c.id ] }, label: false %>
-    <%= f.input :status, collection: Course.statuses.keys, label: false, selected: 0 %>
-    <%= f.input :slug, label: false %>
-    <%= f.input :description, label: false %>
-    <%= f.input :valid_period, label: false %>
+    <span><%= t('course.title') %><%= f.input :title, label: false, placeholder: t('course.enter_title') %></span>
+    <span><%= t('course.price') %><%= f.input :price, label: false, placeholder: t('course.enter_price') %></span>
+    <span><%= t('course.currency_code') %><%= f.select :currency_id, Currency.all.map { |c| [ c.code, c.id ] }, label: false %></span></br>
+    <span><%= t('course.category_name') %><%= f.select :category_id, Category.all.map { |c| [ c.name, c.id ] }, label: false %></span></br>
+    <span><%= t('course.status') %><%= f.input :status, collection: Course.statuses.keys, label: false, selected: 0 %></span>
+    <span><%= t('course.slug') %><%= f.input :slug, label: false %></span>
+    <span><%= t('course.description') %><%= f.input :description, label: false %></span>
+    <span><%= t('course.valid_period') %><%= f.input :valid_period, label: false %></span>
 
     <%= f.button :submit, t("course.#{action}") %>
   <% end %>
