@@ -1,10 +1,9 @@
 module CourseStore
   module V1
     class Courses < Grape::API
-      before do
-        user = User.find_by(auth_token: params['auth_token'])
-        error!({ message: "Invalid token" }, 401) if user.nil?
-      end
+      helpers CourseStore::Helpers::AuthenticationHelper
+      before { authenticate_user! }
+
       version 'v1', using: :path
       format :json
       prefix :api

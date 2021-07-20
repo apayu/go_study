@@ -1,10 +1,8 @@
 module CourseStore
   module V1
     class CourseInventories < Grape::API
-      before do
-        @current_user = User.find_by(auth_token: params['auth_token'])
-        error!({ message: "Invalid token" }, 401) if @current_user.nil?
-      end
+      helpers CourseStore::Helpers::AuthenticationHelper
+      before { authenticate_user! }
 
       version 'v1', using: :path
       format :json
@@ -18,14 +16,14 @@ module CourseStore
 
         post do
           course = Course.publish.find(params[:course_id])
-          error!({ message: 'Duplicated bought!' }, 403) if CourseInventory.available(@current_user, course).size >= 1
+          error!({ message: 'Duplicated bought!' }, 403) if CourseInventory.available(current_user, course).size >= 1
 
           ActiveRecord::Base.transaction do
-            course_inventory = CourseInventory.new(user: @current_user, course: course, expired_at: Time.zone.now + course.valid_period.days)
+            course_inventory = CourseInventory.new(user: current_user, course: course, expired_at: Time.zone.now + course.valid_period.days)
             if course_inventory.save
-              transaction = Transaction.new(trade_no: format("REG%d%d", @current_user.id, Time.zone.now.to_i), course_inventory: course_inventory, user: @current_user, amounts: course.price, currency_id: course.currency_id)
+              transaction = Transaction.new(trade_no: format("REG%d%d", current_user.id, Time.zone.now.to_i), course_inventory: course_inventory, user: current_user, amounts: course.price, currency_id: course.currency_id)
               if transaction.save
-                { message: 'Create success!', auth_token: @current_user.auth_token, status: 200 }
+                { message: 'Create success!', auth_token: current_user.auth_token, status: 200 }
               else
                 error!({ message: transaction.errors }, 403)
               end
