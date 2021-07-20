@@ -212,6 +212,14 @@ zh-TW:
       short: "%m月%d日 %H:%M"
     pm: 下午
   course:
+    title: '課程主題'
+    price: '課程價格'
+    currency_code: '幣別'
+    category_name: '課程類型'
+    status: '課程狀態'
+    slug: '課程url'
+    description: '課程描述'
+    valid_period: '課程效期(1~30天)'
     click_and_create: '點我新增課程'
     enter_title: '輸入課程主題'
     enter_price: '輸入價格'
