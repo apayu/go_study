@@ -11,6 +11,7 @@ RSpec.describe Course, type: :model do
   it { is_expected.to validate_presence_of(:slug) }
   it { is_expected.to validate_presence_of(:description) }
   it { is_expected.to validate_presence_of(:valid_period) }
+  it { is_expected.to validate_inclusion_of(:valid_period).in_range(1..31) }
 
   it { is_expected.to belong_to(:currency) }
   it { is_expected.to belong_to(:category) }

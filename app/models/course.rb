@@ -13,7 +13,7 @@ class Course < ApplicationRecord
   validates :status, presence: true
   validates :slug, presence: true
   validates :description, presence: true
-  validates :valid_period, presence: true
+  validates :valid_period, presence: true, inclusion: { in: (1..31) }
 
   enum status: { unpublish: 0, publish: 1 }
 end
